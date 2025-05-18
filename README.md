@@ -211,13 +211,13 @@ diff -u main_O0.ll main_O2.ll | head -n 25
 
 ```bash
 clang -S -emit-llvm main.c -o temp.ll
-opt -S -constprop temp.ll -o main_constprop.ll
+opt -S --passes="correlated-propagation" temp.ll -o main_constprop.ll
 ```
 
 В `main_constprop.ll`:
 
 * `LIMIT` заменён на `100`.
-* Сохраняются `alloca`, `load`.
+* Сохраняются `alloca`, `lo\ad`.
 
 ![main\_constprop.ll фрагмент](./screen/image_copy_11.png)
 
