@@ -35,7 +35,7 @@ dot -V
 
 Убедился, что версии совместимы и без ошибок при запуске.
 
-![Проверка версий](./screen/image_copy_1.png)
+![Проверка версий](./screen/image_copy_2.png)
 
 
 ## 2. Исходный пример
@@ -67,7 +67,7 @@ int main(void) {
 * `check` содержит две ветви (`<` и `>=`).
 * В `main` фиксированное `value` позволяет предвычисления.
 
-![Код main.c](./screen/image_copy_2.png)
+![Код main.c](./screen/image_copy_3.png)
 
 
 
@@ -91,7 +91,7 @@ clang -Xclang -ast-dump -fsyntax-only main.c
 * `IfStmt` в `check`.
 * `CallExpr` для `printf`.
 
-![Дамп AST](./screen/image_copy_3.png)
+![Дамп AST](./screen/image_copy_4.png)
 
 
 
@@ -114,7 +114,7 @@ clang -S -emit-llvm main.c -o main_unopt.ll
 * Инструкции `store` и `load`.
 * Функция `@check` разбита на `if.then`, `if.else`, `if.end`.
 
-![main\_unopt.ll начало](./screen/image_copy_4.png)
+![main\_unopt.ll начало](./screen/image_copy_5.png)
 
 
 
@@ -130,7 +130,7 @@ clang -O0 -S -emit-llvm main.c -o main_O0.ll
 * Сохраняются все `alloca`, `load`, `store`.
 * `@check` как отдельная функция.
 
-![main\_O0.ll начало](./screen/image_copy_5.png)
+![main\_O0.ll начало](./screen/image_copy_6.png)
 
 ### 5.2 Уровень O2
 
@@ -151,7 +151,7 @@ clang -O2 -S -emit-llvm main.c -o main_O2.ll
 2. `check` исчезает, её тело перенесено.
 3. `printf` получает предвычисленное значение.
 
-![main\_O2.ll фрагмент](./screen/image_copy_6.png)
+![main\_O2.ll фрагмент](./screen/image_copy_7.png)
 
 ### 5.3 Сравнение O0 и O2
 
@@ -163,7 +163,7 @@ diff -u main_O0.ll main_O2.ll | head -n 25
 * Появился SSA‑код вместо `load`/`store`.
 * Вызов `check` заменён арифметическими инструкциями.
 
-![diff main\_O0.ll main\_O2.ll](./screen/image_copy_7.png)
+![diff main\_O0.ll main\_O2.ll](./screen/image_copy_8.png)
 
 
 
@@ -179,7 +179,7 @@ diff -u main_O0.ll main_O2.ll | head -n 25
 
    Создаётся скрытый файл `.main.dot`.
 
-   ![Список файлов с .main.dot](./screen/image_copy_8.png)
+   ![Список файлов с .main.dot](./screen/image_copy_9.png)
 
 2. Конвертация в PNG и просмотр:
 
@@ -191,7 +191,6 @@ diff -u main_O0.ll main_O2.ll | head -n 25
    * Если условие статично известно, CFG сводится к одному блоку.
    * Иначе: два блока (true/false).
 
-   ![.main.dot начало](./screen/image_copy_9.png)
    ![cfg\_main.png](./screen/image_copy_10.png)
 
 
