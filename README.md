@@ -37,7 +37,6 @@ dot -V
 
 ![Проверка версий](./screen/image_copy_1.png)
 
----
 
 ## 2. Исходный пример
 
@@ -70,7 +69,7 @@ int main(void) {
 
 ![Код main.c](./screen/image_copy_2.png)
 
----
+
 
 ## 3. Извлечение AST
 
@@ -94,7 +93,7 @@ clang -Xclang -ast-dump -fsyntax-only main.c
 
 ![Дамп AST](./screen/image_copy_3.png)
 
----
+
 
 ## 4. Создание LLVM IR
 
@@ -117,7 +116,7 @@ clang -S -emit-llvm main.c -o main_unopt.ll
 
 ![main\_unopt.ll начало](./screen/image_copy_4.png)
 
----
+
 
 ## 5. Проведение оптимизаций
 
@@ -166,7 +165,7 @@ diff -u main_O0.ll main_O2.ll | head -n 25
 
 ![diff main\_O0.ll main\_O2.ll](./screen/image_copy_7.png)
 
----
+
 
 ## 6. Составление и просмотр CFG
 
@@ -195,7 +194,7 @@ diff -u main_O0.ll main_O2.ll | head -n 25
    ![.main.dot начало](./screen/image_copy_9.png)
    ![cfg\_main.png](./screen/image_copy_10.png)
 
----
+
 
 ## 7. Основные выводы
 
@@ -204,7 +203,7 @@ diff -u main_O0.ll main_O2.ll | head -n 25
 3. `-O2` выполняет `constprop`, `inline`, `mem2reg` и другие, приводя к компактному SSA.
 4. CFG после оптимизаций упрощается, уменьшается количество блоков и ветвлений.
 
----
+
 
 ## 8. Дополнительное задание: исследование оптимизаций (вариант 5)
 
